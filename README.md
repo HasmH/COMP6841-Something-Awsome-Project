@@ -7,7 +7,7 @@ My Something Awesome Project was to create a keylogger, and cookie theft malware
 
 Another goal of this project was to step out of my comfort zone by creating a YouTube series. This YouTube series consists of videos which I uploaded weekly - I documented my  SA project progress. Along with explaining my progress to my YouTube audience, I also tried to relate my code/project with what we were learning in that particular week. For example - talking about Insiders and Malicious payloads in this YouTube video/Progress Checkin. 
 
-Here is a link to a playlist of all videos that I have created so far for this project: Playlist 
+Here is a link to a playlist of all videos that I have created so far for this project: [Playlist](https://www.youtube.com/playlist?list=PLWFGhqiHyIelLM40o_86uf88sSzfIQml3) 
 
 Overall, considering the progress I made, I believe the final product for my SA Project deserves a DN grade. There were some pitfalls to my project and features I did not have time to implement and may have underestimated the difficulty of - this is something I will talk about in Project Scope and Project Reflection
 
